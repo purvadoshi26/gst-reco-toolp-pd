@@ -860,7 +860,7 @@ if f1 and f2:
                 b1 = f1.read(); b2 = f2.read()
 
                 if is_itc:
-                    reco, df_t, df_2b = run_itc_reco(b1, b2)
+                    reco, df_t, df_2b = run_itc_reco(b2, b1)  # b2=Purchase(File2), b1=2B(File1)
                     cnt = reco["Status"].value_counts().to_dict()
                     buf = build_itc_excel(reco, df_t, df_2b, client, period)
                     fname = f"{client.replace(' ','_')}_ITC_Reco_{period.replace(' ','_')}.xlsx"
@@ -890,7 +890,7 @@ if f1 and f2:
                         })
 
                 elif is_sales:
-                    reco, df_b, df_p = run_sales_reco(b1, b2)
+                    reco, df_b, df_p = run_sales_reco(b1, b2)  # b1=Portal(File1), b2=Books(File2)
                     cnt = reco["Status"].value_counts().to_dict()
                     buf = build_sales_excel(reco, df_b, df_p, client, period)
                     fname = f"{client.replace(' ','_')}_Sales_Reco_{period.replace(' ','_')}.xlsx"
